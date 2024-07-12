@@ -1,0 +1,21 @@
+{
+    "name": "portifolio/crud",
+    "type": "project",
+    "require": {
+        "rain/raintpl": "^3.1",
+        "slim/slim": "^4.14",
+        "slim/psr7": "^1.7",
+        "almasaeed2010/adminlte": "^3.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Portifolio\\Crud\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "João Paulo Will Chagas Barbosa",
+            "email": "joaopaulow010@gmail.com"
+        }
+    ]
+}
