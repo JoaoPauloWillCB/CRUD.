@@ -1,0 +1,74 @@
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CRUD | Recovery</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="../../dist/css/adminlte.min.css?v=3.2.0">
+</head>
+
+<body class="login-page bg-navy">
+    {if="!empty($sucess)"}
+    <div class="alert">
+        <div class="alert alert-success alert-dismissible shadow">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5><i class="icon fas fa-check"></i> {$sucess}</h5>
+        </div>
+    </div>
+    {/if}
+    {if="!empty($error)"}
+    <div class="alert">
+        <div class="alert alert-danger alert-dismissible shadow">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5><i class="icon fas fa-ban"></i> {$error}</h5>
+        </div>
+    </div>
+    {/if}
+    {if="!empty($warning)"}
+    <div class="alert">
+        <div class="alert alert-warning alert-dismissible shadow">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5><i class="icon fas fa-exclamation-triangle"></i> {$warning}</h5>
+        </div>
+    </div>
+    {/if}
+    <div class="login-box">
+        <div class="login-logo">
+            <p>RECUPERAÇÃO DE SENHA</p>
+        </div>
+        <div class="card shadow-lg">
+            <div class="card-body">
+                <p class="login-box-msg" style="color: black;">Não consegue acessar sua conta? Redefina sua senha aqui.</p>
+                <form action="" method="post">
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="E-mail">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary btn-block">Redefinir senha</button>
+                        </div>
+
+                    </div>
+                </form>
+                <p class="mt-3 mb-1">
+                    <a href="/login">Login</a>
+                </p>
+                <p class="mb-0">
+                    <a href="/registration" class="text-center">Cadastrar-se</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../dist/js/adminlte.min.js?v=3.2.0"></script>
+</body>
+</html>
