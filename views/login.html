@@ -3,16 +3,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CRUD | Login</title>
-
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
-
     <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-
     <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css?v=3.2.0">
 </head>
-
 <body class="login-page bg-navy">
     {if="!empty($sucess)"}
     <div class="alert">
@@ -45,9 +40,9 @@
             </div>
             <div class="card-body">
                 <p class="login-box-msg" style="color: black;">Faça login para iniciar sua sessão</p>
-                <form action="" method="post">
+                <form action="" method="POST">
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="E-mail">
+                        <input type="email" class="form-control" name="email" placeholder="E-mail">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -55,7 +50,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Senha">
+                        <input type="password" class="form-control" name="senha" placeholder="Senha">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
