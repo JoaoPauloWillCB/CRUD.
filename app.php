@@ -9,6 +9,7 @@ use Slim\Routing\RouteCollector;
 use Slim\Routing\RouteCollectorProxy;
 
 require_once('vendor/autoload.php');
+require_once('functions.php');
 
 $app = AppFactory::create();
 $app->addRoutingMiddleware();
