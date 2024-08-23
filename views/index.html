@@ -1,0 +1,88 @@
+<div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__shake" src="/public/dist/img/logo.png" alt="AdminLTELogo" height="200" width="200">
+</div>
+<div class="wrapper">
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        {if="!empty($sucess)"}
+                        <div class="alert">
+                            <div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert"
+                                    aria-hidden="true">&times;</button>
+                                <h5><i class="icon fas fa-check"></i> {$sucess}</h5>
+                            </div>
+                        </div>
+                        {/if}
+                        {if="!empty($error)"}
+                        <div class="alert">
+                            <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert"
+                                    aria-hidden="true">&times;</button>
+                                <h5><i class="icon fas fa-ban"></i> {$error}</h5>
+                            </div>
+                        </div>
+                        {/if}
+                        {if="!empty($warning)"}
+                        <div class="alert">
+                            <div class="alert alert-warning alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert"
+                                    aria-hidden="true">&times;</button>
+                                <h5><i class="icon fas fa-exclamation-triangle"></i> {$warning}</h5>
+                            </div>
+                        </div>
+                        {/if}
+                    </div>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-3 col-6">
+
+                                <div class="small-box bg-info">
+                                    <div class="inner">
+                                        <h3>{$qtdUsuarios}</h3>
+                                        <p>Usuários cadastrados</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-user-lock"></i>
+                                    </div>
+                                    <a href="/user/list" class="small-box-footer">
+                                        Mais informações <i class="fas fa-arrow-circle-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-6">
+
+                                <div class="small-box bg-success">
+                                    <div class="inner">
+                                        <h3>{$qtdClientes}</h3>
+                                        <p>Clientes cadastrados</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <a href="/client/list" class="small-box-footer">
+                                        Mais informações <i class="fas fa-arrow-circle-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+        </section>
+    </div>
+</div>
+</section>
+</div>
+</div>

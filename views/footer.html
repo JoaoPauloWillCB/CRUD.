@@ -1,0 +1,132 @@
+</body>
+<footer class="main-footer bg-dark">
+    Feito por: João Paulo Will Chagas Barbosa.
+    <div class="float-right d-none d-sm-block">
+        <a href="#">gitHub</a>
+        <a href="#"></i>Linkedin</a>
+    </div>
+</footer>
+
+<script src="/plugins/jquery/jquery.min.js"></script>
+<script src="/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/plugins/chart.js/Chart.min.js"></script>
+<script src="/plugins/jqvmap/jquery.vmap.js"></script>
+<script src="/plugins/jqvmap/maps/jquery.vmap.brazil.js"></script>
+<script src="/plugins/popper/popper.js"></script>
+<script src="/dist/js/adminlte.js"></script>
+<script src="/dist/js/senhas.js"></script>
+<script src="/dist/js/mascaras.js"></script>
+<script src="/dist/js/propostas.js"></script>
+<script src="/dist/js/holerites.js"></script>
+<script src="/dist/js/communications.js"></script>
+<script src="/dist/js/checkAll.js"></script>
+<script src="/dist/js/buscaTabela.js"></script>
+<script src="/dist/js/buscaCep.js"></script>
+<script src="/dist/js/modal.js"></script>
+<script src="/dist/js/popover.js"></script>
+<script src="/plugins/moment/moment-with-locales.js"></script>
+<script src="/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="/dist/js/pages/dashboard.js"></script>
+<script src="/plugins/daterangepicker/daterangepicker.js"></script>
+<script src="/plugins/summernote/summernote-bs4.min.js"></script>
+<script src="/plugins/bs-stepper/js/bs-stepper.min.js"></script>
+
+<!-- libs datatables -->
+<script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="/plugins/jszip/jszip.min.js"></script>
+<script src="/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+<script>
+    $(function () {
+      $("#example1").DataTable({
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      $('#example2').DataTable({
+        "paging": false,
+        "lengthChange": false,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
+    });
+  </script>
+
+<script>
+    var dataAtual = new Date();
+    var anoAtual = dataAtual.getFullYear();
+    document.getElementById('ano-atual').innerHTML = anoAtual;
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    window.stepper = new Stepper(document.querySelector('.bs-stepper'))
+  })
+</script>
+
+<script>
+    $(function () {
+        $('#reservation').daterangepicker({
+            locale: {
+                format: 'DD/MM/YYYY'
+            }
+        })
+    })
+</script>
+
+<script>
+    $(function () {
+        $('#compose-textarea').summernote()
+    })
+</script>
+
+<script>
+    function loader() {
+        var loader_menu = document.getElementById('loader_menu');
+        var loader = document.getElementById('loader');
+
+        document.onkeydown = function () { 
+            switch (event.keyCode) {
+              case 116 :  
+                 event.returnValue = false;
+                 event.keyCode = 0;           
+                 return false;  
+                            
+               case 82 : 
+                 if (event.ctrlKey) {  
+                    event.returnValue = false;
+                    event.keyCode = 0;             
+                    return false;
+                }
+            }
+        } 
+
+        loader.style.display = 'block';
+        loader_menu.style.display = 'block';
+    }
+
+
+    function closeLoader() {
+        var loader_menu = document.getElementById('loader_menu');
+        var loader = document.getElementById('loader');
+
+        loader.style.display = 'none';
+        loader_menu.style.display = 'none';
+    }
+</script>
+
+<script src="/dist/js/bloqueio.js"></script>
+
+</html>

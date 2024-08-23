@@ -1,0 +1,73 @@
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Lista de Clientes</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/">Página Inicial</a></li>
+                        <li class="breadcrumb-item active">Lista de Clientes</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    {if="!empty($sucess)"}
+                    <div class="alert">
+                        <div class="alert alert-success alert-dismissible shadow">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h5><i class="icon fas fa-check"></i> {$sucess}</h5>
+                        </div>
+                    </div>
+                    {/if}
+                    {if="!empty($error)"}
+                    <div class="alert">
+                        <div class="alert alert-danger alert-dismissible shadow">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h5><i class="icon fas fa-ban"></i> {$error}</h5>
+                        </div>
+                    </div>
+                    {/if}
+                    {if="!empty($warning)"}
+                    <div class="alert">
+                        <div class="alert alert-warning alert-dismissible shadow">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h5><i class="icon fas fa-exclamation-triangle"></i> {$warning}</h5>
+                        </div>
+                    </div>
+                    {/if}
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <table id="example2" class="table table-bordered table-hover dataTable ftr-inline" aria-describedby="example2_info">
+                                <thead>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>CPF</th>
+                                        <th>Celular</th>
+                                        <th>Descrição</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabela-busca" name="tabela-busca">
+                                    {loop="$clientes"}
+                                    <tr class="linha-expansivel">
+                                        <td>{$value.clientes_nome}</td>
+                                        <td>{$value.clientes_cpf}</td>
+                                        <td>{$value.clientes_celular}</td>
+                                        <td>{$value.clientes_descricao}</td>
+                                    </tr>
+                                    {/loop}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

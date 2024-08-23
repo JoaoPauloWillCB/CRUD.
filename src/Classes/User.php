@@ -8,27 +8,54 @@ use Exception;
 class User
 {
 
+    const SESSION = 'User';
+
     public function login(string $usuario_email, string $usuario_senha)
     {
-
-        $sql = new Sql(APP_CRUDPHP);
 
         if(empty($usuario_email) || empty($usuario_senha)) {
 
             throw new \Exception('Os campos devem ser preenchidos corretamente.');
         }
 
+        $usuario_banco = $this->getUserByEmail($usuario_email);
+
+        if(empty($usuario_banco)) {
+
+            throw new \Exception(('O e-mail informado ainda não possui cadastro.'));
+        
+        } else {
+
+            if($usuario_banco[0]['usuarios_email'] != $usuario_email || strcmp($usuario_senha, $usuario_banco[0]['usuarios_senha']) != 0) {
+
+                throw new \Exception('E-mail ou senha incorretor. Por favor tente novamente.');
+            }
+        }
+        
+        $_SESSION['User'] = $usuario_banco[0];
+    }
+
+    public function verifyLogin()
+    {
+        if (!isset($_SESSION['User'])) {
+
+            header('Location: /login');   
+        }
+    }
+
+
+    public function getUserByEmail(string $usuario_email)
+    {
+
+        $sql = new Sql(APP_CRUDPHP);
+
         $query = 'SELECT * FROM tb_usuarios WHERE usuarios_email = :usuario_email';
 
         $params = array(':usuario_email' => $usuario_email);
 
         $result = $sql->select($query, $params);
-        
-        if(empty($result) || strcmp($usuario_senha, $result[0]['usuarios_senha']) != 0) {
 
-            throw new Exception('E-mail ou senha incorretos.');
-        }
-        
+        return $result;
     }
 
     public function userRegistration(string $usuario_nome, string $usuario_email, string $usuario_senha)
@@ -50,5 +77,17 @@ class User
         );
 
         $sql->query($query, $params);
+    }
+
+    public function getUsers() :array
+    {
+
+        $sql = new Sql(APP_CRUDPHP);
+
+        $query = 'SELECT usuarios_nome, usuarios_email, usuarios_senha FROM tb_usuarios';
+
+        $return = $sql->select($query);
+
+        return $return;
     }
 }

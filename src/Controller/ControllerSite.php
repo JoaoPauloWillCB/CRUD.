@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Classes\Alert;
+use App\Classes\Client;
 use App\Classes\Page;
 use App\Classes\User;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -10,6 +11,31 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 class ControllerSite
 {
+
+    public function app(Request $request, Response $response, array $args) 
+    {
+        $user = new User();
+
+        $client = new Client();
+
+        $user->verifyLogin();
+
+        $qtdUsuarios = count($user->getUsers());
+
+        $qtdClientes = count($client->getClientes());
+        
+        $page = new Page(['header' => true, 'footer' => true]);
+            
+            $page->setTpl('index', array(
+                'error' => Alert::getError(), 
+                'sucess' => Alert::getSucess(),
+                'warning' => Alert::getWarning(),
+                'qtdUsuarios' => $qtdUsuarios,
+                'qtdClientes' => $qtdClientes
+            ));
+    
+            exit;
+    }
 
     public function login(Request $request, Response $response, array $args)
     {
@@ -39,19 +65,32 @@ class ControllerSite
                 
                 $user->login($usuario_email, $usuario_senha);
 
-                Alert::setSucess('Login realizado com sucesso.');
-
             } catch (\Throwable $erro) {
                 
                 Alert::setError($erro->getMessage());
+
+                header('Location: /login');
+
+                exit;
             }
 
-            header('Location: /login');
+            header('Location: /');
 
             exit;
         }
     }
 
+    public function logout()
+    {
+
+        session_destroy();
+
+        header('Location: /login');
+
+        exit;
+    }
+
+    
     public function forgotPassword(Request $request, Response $response, array $args)
     {
 

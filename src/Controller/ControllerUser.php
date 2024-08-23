@@ -40,17 +40,41 @@ class ControllerUser
 
                 $user->userRegistration($usuario_nome, $usuario_email, $usuario_senha);
 
-                Alert::setSucess('Cadatro realizado com sucesso.');
+                Alert::setSucess('Cadastro realizado com sucesso.');
+
+                header('Location: /login');
+
+                exit;
                 
             } catch (\Throwable $erro) {
                 
                 Alert::setError($erro->getMessage());
-
             }
 
             header('Location: /registration');
     
             exit;
         }
+    }
+
+    public function userList(Request $request, Response $response, array $args)
+    {
+
+        $user = new User();
+
+        $user->verifyLogin();
+
+        $usuarios = $user->getUsers();
+
+        $page = new Page(['header' => true, 'footer' => true]);
+
+        $page->setTpl('user/userList', array(
+            'error' => Alert::getError(), 
+            'sucess' => Alert::getSucess(),
+            'warning' => Alert::getWarning(),
+            'usuarios' => $usuarios
+        ));
+
+        exit;
     }
 }

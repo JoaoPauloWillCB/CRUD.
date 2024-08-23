@@ -1,0 +1,89 @@
+<div class="wrapper">
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                {if="!empty($sucess)"}
+                    <div class="alert">
+                        <div class="alert alert-success alert-dismissible shadow">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h5><i class="icon fas fa-check"></i> {$sucess}</h5>
+                        </div>
+                    </div>
+                    {/if}
+                    {if="!empty($error)"}
+                    <div class="alert">
+                        <div class="alert alert-danger alert-dismissible shadow">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h5><i class="icon fas fa-ban"></i> {$error}</h5>
+                        </div>
+                    </div>
+                    {/if}
+                    {if="!empty($warning)"}
+                    <div class="alert">
+                        <div class="alert alert-warning alert-dismissible shadow">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h5><i class="icon fas fa-exclamation-triangle"></i> {$warning}</h5>
+                        </div>
+                    </div>
+                    {/if}
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Cadastro de clientes</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/">Página Inicial</a></li>
+                            <li class="breadcrumb-item active">Cadastro de clientes</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="card shadow">
+                    <form action="" method="POST" name="clientes">
+                        <div class="card-body">
+                            <div class="row">
+                                <!-- LADO ESQUERDO -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label"><span>Nome<span class='text-danger'> * </span></span><a class="" data-content="Nome completo do cliente." data-placement="top" data-toggle="popover" data-trigger="focus" role="button" tabindex="0"><i class="fa fa-question-circle"></i></a></label>                                
+                                        <div class="input-group">
+                                            <input id="nome" type='text' placeholder="Digite o Nome" name="nome" maxlength="80" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label"><span>CPF<span class='text-danger'> * </span></span><a class="" data-content="Digite o CPF, utilize apenas números" data-placement="top" data-toggle="popover" data-trigger="focus" role="button" tabindex="0"><i class="fa fa-question-circle"></i></a></label>                                
+                                        <div class="input-group">
+                                            <input id="cpf" type='text' placeholder="Digite o CPF" name="cpf" maxlength="14" required class="form-control">
+                                        </div>
+                                    </div>                         
+                                </div>
+                                <!-- LADO DIREITO -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label"><span>Celular<span class='text-danger'> * </span></span><a class="" data-content="Digite o celular do cliente." data-placement="top" data-toggle="popover" data-trigger="focus" role="button" tabindex="0"><i class="fa fa-question-circle"></i></a></label>                                
+                                        <div class="input-group">
+                                            <input id="celular" type='text' placeholder="Digite o número de celular" name="celular" required class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label"><span>Descrição </span><a class="" data-content="Digite uma descrição relacionada ao clientes caso necessário." data-placement="top" data-toggle="popover" data-trigger="focus" role="button" tabindex="0"><i class="fa fa-question-circle"></i></a></label>                                
+                                        <div class="input-group">
+                                            <input type='text' placeholder="Descrição" name="descricao" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-danger"><a style="color: white;" href="/">Retornar</a></button>
+                            <button type="submit" id="btn-submit" class="btn btn-success">Cadastrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
