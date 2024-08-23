@@ -1,79 +1,51 @@
-function confereSenha() {
+function confereSenha() 
+{    
+    let inputSenha = document.getElementById('senha');
+    let inputConfsenha = document.getElementById('confsenha');
+    let senha = inputSenha.value;
+    let confsenha = inputConfsenha.value;
 
-    const senha = document.getElementById('senha');
+    inputSenha.setCustomValidity('');
+    inputConfsenha.setCustomValidity('');
 
-    const confsenha = document.getElementById('confsenha');
+    if (confsenha != senha) {
 
-    function fun_validar_senha(senha) {
+        inputConfsenha.setCustomValidity('As senhas não conferem');
 
-        if (senha.length < 8) {
-
-            return false;
-
-        }
-
-        if (!/[a-z]/.test(senha)) {
-
-            return false;
-
-        }
-
-        if (!/[A-Z]/.test(senha)) {
-
-            return false;
-
-        }
-
-        if (!/[0-9]/.test(senha)) {
-
-            return false;
-
-        }
-
-        if (!/[!@#$%^&*()\-_=+{};:,<.>]/.test(senha)) {
-
-            return false;
-
-        }
-
-        return true;
-
+        inputConfsenha.reportValidity();
     }
 
-    if (confsenha.value === senha.value) {
+    if (senha.length < 8) {
 
-        if (fun_validar_senha(senha.value)) {
-
-        } else {
-
-            modalSenhas();
-
-            senha.focus();
-
-            return false;
-
-        }
-
-    } else {
-
-        confsenha.setCustomValidity('As senhas não conferem');
-
-        return false;
-
+        inputSenha.setCustomValidity('A senha deve conter no mínimo 8 caracteres.');
     }
 
-    confsenha.setCustomValidity('');
+    if (!/[a-z]/.test(senha)) {
 
-    return true;
+        inputSenha.setCustomValidity('A senha deve conter ao menos uma letra minúscula.');
+    }
 
+    if (!/[A-Z]/.test(senha)) {
+
+        inputSenha.setCustomValidity('A senha deve conter ao menos uma letra maiúscula.');
+    }
+
+    if (!/[0-9]/.test(senha)) {
+
+        inputSenha.setCustomValidity('A senha deve conter ao menos um número.');
+    }
+
+    if (!/[!@#$%^&*()\-_=+{};:,<.>]/.test(senha)) {
+
+        inputSenha.setCustomValidity('A senha deve conter ao menos um caracter especial.');
+    }
+
+    senha.reportValidity();
 }
 
-function mudarCor() {
-
-    var senha = document.getElementById('senha').value;
-
-    var requisitos = [
-
+function validarSenha(senha)
+{
+    return [
         /[A-Z]/.test(senha),
 
         /[a-z]/.test(senha),
@@ -83,10 +55,16 @@ function mudarCor() {
         senha.length >= 8,
 
         /[\W_]/.test(senha)
-
     ];
+}
 
-    var divs = [
+function mudarCor() 
+{
+    let senha = document.getElementById('senha').value;
+
+    let requisitos = validarSenha(senha);
+
+    let divs = [
 
         document.getElementById('letraMai'),
 
@@ -97,51 +75,21 @@ function mudarCor() {
         document.getElementById('digitos'),
 
         document.getElementById('caractere')
-
     ];
 
-    divs.forEach(function (div, index) {
-
-        if (requisitos[index]) {
-
-            div.classList.remove('text-danger');
-
-            div.classList.add('text-success');
-
-        } else {
-
-            div.classList.remove('text-success');
-
-            div.classList.add('text-danger');
-
-        }
-
+    requisitos.forEach(function (valido, index) {
+        divs[index].classList.toggle('text-success', valido);
+        divs[index].classList.toggle('text-danger', !valido);
     });
-
 }
 
-function alterarVisibilidade(inputId) {
-    
+function alterarVisibilidade(inputId, iconElement) 
+{
     const passwordInput = document.getElementById(inputId);
-    
-    const icon = passwordInput.parentElement.querySelector('.alterarVisibilidade');
 
-    if (passwordInput.type === 'password') {
+    const isPasswordVisible = passwordInput.type === 'password';
+    passwordInput.type = isPasswordVisible ? 'text' : 'password';
 
-        passwordInput.type = 'text';
-
-        icon.classList.remove('fa-eye');
-
-        icon.classList.add('fa-eye-slash');
-
-    } else {
-
-        passwordInput.type = 'password';
-
-        icon.classList.remove('fa-eye-slash');
-
-        icon.classList.add('fa-eye');
-
-    }
-    
+    iconElement.classList.toggle('fa-eye', !isPasswordVisible);
+    iconElement.classList.toggle('fa-eye-slash', isPasswordVisible);
 }

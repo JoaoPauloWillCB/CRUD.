@@ -58,14 +58,44 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" name="senha" placeholder="Senha">
+                        <input oninput="mudarCor()" name="senha" minlength="8" maxlength="15" id="senha" required type="password" class="form-control" placeholder="Crie sua senha" autocomplete="on">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
+                                <span class="alterarVisibilidade fas fa-eye" onclick="alterarVisibilidade('senha')"></span>
                             </div>
                         </div>
                     </div>
-                        <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
+                    <div class="input-group mb-3">
+                        <input name="confsenha" required id="confsenha" minlength="8" maxlength="15" type="password" class="form-control" placeholder="Confirme sua senha" autocomplete="on">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="alterarVisibilidade fas fa-eye" onclick="alterarVisibilidade('confsenha')"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div id="letraMai" class="text-sm text-danger">
+                                Uma Letra Maiúscula
+                            </div>
+                            <div id="letraMin" class="text-sm text-danger">
+                                Uma Letra Minúscula
+                            </div>
+                            <div id="numero" class="text-sm text-danger">
+                                Um número
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div id="digitos" class="text-sm text-danger">
+                                No mínimo 8 dígitos
+                            </div>
+                            <div id="caractere" class="text-sm text-danger">
+                                Um caractere especial
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <button type="submit" onclick="confereSenha()" class="btn btn-primary btn-block">Cadastrar</button>
                 </form>
                 <a href="/login" class="text-center">Já possuo cadastrado</a>
             </div>
@@ -74,5 +104,6 @@
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../dist/js/adminlte.min.js?v=3.2.0"></script>
+    <script src="../../public/dist/js/senhas.js"></script>
 </body>
 </html>
