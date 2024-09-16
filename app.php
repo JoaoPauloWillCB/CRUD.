@@ -23,6 +23,7 @@ $app->map(['GET', 'POST'], '/forgot-password', [ControllerSite::class, 'forgotPa
 
 // USER
 $app->map(['GET', 'POST'], '/registration', [ControllerUser::class, 'registration']);
+$app->map(['GET', 'POST'], '/user/userProfile', [ControllerUser::class, 'userProfile']);
 $app->get('/user/list', [ControllerUser::class, 'userList']);
 
 // CLIENT
