@@ -1,0 +1,252 @@
+{$infouser = $_SESSION.User}
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/">Página Inicial</a></li>
+                        <li class="breadcrumb-item active">Lista de Clientes</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    {if="!empty($sucess)"}
+                    <div class="alert alert-success alert-dismissible shadow">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h5><i class="icon fas fa-check"></i> {$sucess}</h5>
+                    </div>
+                    {/if}
+                    {if="!empty($error)"}
+                    <div class="alert alert-danger alert-dismissible shadow">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h5><i class="icon fas fa-ban"></i> {$error}</h5>
+                    </div>
+                    {/if}
+                    {if="!empty($warning)"}
+                    <div class="alert alert-warning alert-dismissible shadow">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h5><i class="icon fas fa-exclamation-triangle"></i> {$warning}</h5>
+                    </div>
+                    {/if}
+                    <section class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="card card-info card-outline shadow-lg">
+                                        <div class="card-body box-profile">
+                                            <div class="text-center">
+                                                {if="$imgUser == ''"}
+                                                    <img class="profile-user-img img-fluid img-circle" src="../../dist/img/logo.png" alt="User profile picture">
+                                                {else}
+                                                    <img class="profile-user-img img-fluid img-circle" src="{$imgUser}" alt="User profile picture">
+                                                {/if}
+                                            </div>
+                                            <h3 class="profile-username text-center">{$infouser.usuarios_nome}</h3>
+                                            <p class="text-muted text-center">Usuário</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-info btn-block" id="btn-img">Mudar foto de perfil</button>
+                                    </div>
+                                    <div class="card card-info card-outline shadow" style="display: none;" id="form-img">
+                                        <div class="card-body">
+                                            <form action="" method="POST" enctype="multipart/form-data">
+                                                <div class="form-group">
+                                                    <div class="custom-file form-control">
+                                                        <input type="file" name="image" class="custom-file-input" id="customFile" accept=".png, .jpg, .jpeg">
+                                                        <label for="customFile" class="custom-file-label">Escolha uma imagem</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <button onclick="atualizar()" type="submit" name="input" class="btn btn-success btn-block">Alterar</button>
+                                                    <button onclick="atualizar()" type="submit" name="remove" class="btn bg-dark btn-block">Excluir</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div style="padding-bottom: 30px;">
+                                        <button type="button" class="btn btn-danger btn-block"><a style="color: white;" href="/">Retornar</a></button>
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="card shadow-lg">
+                                        <div class="card-header p-2">
+                                            <ul class="nav nav-pills">
+                                                <li class="nav-item"><a class="nav-link active" href="#dados"data-toggle="tab">Dados cadastrais</a></li>
+                                                <li class="nav-item"><a class="nav-link" href="#redefinirsenha"data-toggle="tab">Redefinir senha</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="tab-content">
+                                                <div class="active tab-pane" id="dados">
+                                                    <form method="POST">
+                                                        <input type="hidden" name="att-dados">
+                                                        <div class="card-body">
+                                                            <div class="form-check">
+                                                                <input type="checkbox" class="form-check-input" id="check-edit">
+                                                                <label class="form-check-label" for="check-edit">Editar</label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="check-edit">Nome</label>
+                                                                <input type="text" class="form-control" id="name" name="nome" value="{$infouser.usuarios_nome}" disabled>
+                                                            </div>
+                                                            <button type="submit" id="btn-save" class="btn btn-success float-right" style="display: none;">Salvar</button>
+                                                        </div>    
+                                                    </form>
+                                                </div>
+                                                <div class="tab-pane" id="redefinirsenha">
+                                                    <form method="POST">
+                                                        <input type="hidden" name="att-senha">
+                                                        <div class="card-body">
+                                                            <div class="form-group">
+                                                                <label for="input-senha-antiga">Senha Antiga</label>
+                                                                <div class="input-group">
+                                                                    <input type="password" id="input-senha-antiga" name="senhaAntiga" class="form-control" placeholder="Digite sua senha antiga" required>
+                                                                    <div class="input-group-append">
+                                                                        <div class="input-group-text">
+                                                                            <span class="alterarVisibilidade fas fa-eye" onclick="alterarVisibilidade('input-senha-antiga', this)"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="input-senha-nova">Nova senha</label>
+                                                                <div class="input-group">
+                                                                    <input oninput="mudarCor(this)" type="password" id="input-senha-nova" name="novaSenha" class="form-control" placeholder="Digite sua nova senha" required>
+                                                                    <div class="input-group-append">
+                                                                        <div class="input-group-text">
+                                                                            <span class="alterarVisibilidade fas fa-eye" onclick="alterarVisibilidade('input-senha-nova', this)"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="input-confirmacao-nova-senha">Confirmação da nova senha</label>
+                                                                <div class="input-group">
+                                                                    <input type="password" id="input-confirmacao-nova-senha" name="confNovaSenha" class="form-control" placeholder="Confirme sua nova senha" required>
+                                                                    <div class="input-group-append">
+                                                                        <div class="input-group-text">
+                                                                            <span class="alterarVisibilidade fas fa-eye" onclick="alterarVisibilidade('input-confirmacao-nova-senha', this)"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-4">
+                                                                    <div id="letraMai" class="text-sm text-danger">
+                                                                        Uma Letra Maiúscula
+                                                                    </div>
+                                                                    <div id="letraMin" class="text-sm text-danger">
+                                                                        Uma Letra Minúscula
+                                                                    </div>
+                                                                    <div id="numero" class="text-sm text-danger">
+                                                                        Um número
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-4">
+                                                                    <div id="digitos" class="text-sm text-danger">
+                                                                        No mínimo 8 dígitos
+                                                                    </div>
+                                                                    <div id="caractere" class="text-sm text-danger">
+                                                                        Um caractere especial
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-4">
+                                                                    <button type="submit" onclick="confereSenha('input-senha-nova', 'input-confirmacao-nova-senha')" class="btn btn-success float-right">
+                                                                        Salvar
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    document.getElementById('check-edit').addEventListener('change', function() {
+
+        let input = document.getElementById('name');
+        let btn = document.getElementById('btn-save');
+
+        if(this.checked) 
+        {
+            input.removeAttribute('disabled');
+            btn.style.display = 'block';
+            
+        } else {
+
+            input.setAttribute('disabled', true);
+            btn.style.display = 'none';
+        }
+    });
+</script>
+
+<script>
+    document.getElementById("customFile").addEventListener("change", function(event) {
+        var input = event.target;
+        var fileName = input.files[0].name;
+        var label = document.querySelector(".custom-file-label");
+        label.textContent = fileName;
+    });
+</script>
+
+<script>
+    function desabilitar(valor) {
+
+        var input = document.getElementById('nome');
+        var btnEnviar = document.getElementById('btnEnviar');
+
+        if (!valor) {
+
+            input.setAttribute('disabled', '');
+            btnEnviar.setAttribute('style', 'display: none');
+
+        } else if (valor) {
+
+            input.removeAttribute("disabled");
+            btnEnviar.setAttribute('style', 'display: block');
+        }
+    }
+</script>
+
+<script>
+    document.getElementById('btn-img').addEventListener('click', function () {
+        
+        var formImg = document.getElementById('form-img');
+    
+        if (formImg.style.display === 'none') {
+    
+            formImg.style.display = 'block';
+
+        } else if(formImg.style.display === 'block') {
+
+            formImg.style.display = 'none';
+        }
+});
+</script>
+
+<script>
+    function atualizar()
+    {
+        window.location.reload(true);
+    }
+</script>
