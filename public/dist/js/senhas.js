@@ -1,10 +1,10 @@
-function confereSenha() 
+function confereSenha(inputNovaSenhaID, inputConfID) 
 {    
-    let inputSenha = document.getElementById('senha');
-    let inputConfsenha = document.getElementById('confsenha');
+    let inputSenha = document.getElementById(inputNovaSenhaID);
+    let inputConfsenha = document.getElementById(inputConfID);
     let senha = inputSenha.value;
     let confsenha = inputConfsenha.value;
-
+    
     inputSenha.setCustomValidity('');
     inputConfsenha.setCustomValidity('');
 
@@ -40,7 +40,7 @@ function confereSenha()
         inputSenha.setCustomValidity('A senha deve conter ao menos um caracter especial.');
     }
 
-    senha.reportValidity();
+    inputSenha.reportValidity();
 }
 
 function validarSenha(senha)
@@ -58,11 +58,9 @@ function validarSenha(senha)
     ];
 }
 
-function mudarCor() 
+function mudarCor(inputSenha) 
 {
-    let senha = document.getElementById('senha').value;
-
-    let requisitos = validarSenha(senha);
+    let requisitos = validarSenha(inputSenha.value);
 
     let divs = [
 
