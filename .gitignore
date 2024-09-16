@@ -1,3 +1,4 @@
 /vendor/
-/plugins/
-/views-cache/
+/public/plugins/
+/public/views-cache/
+/public/dist/
