@@ -37,17 +37,32 @@ class ControllerClient
 
             $client = new Client();
 
-            $nome = !empty($_POST['nome']) ? $_POST['nome'] : NULL;
             $cpf = !empty($_POST['cpf']) ? $_POST['cpf'] : '';
+
+            if(!empty($client->getClientByCPF($cpf))) {
+
+                Alert::setError('Já existe um cliente com este CPF cadastrado.');
+
+                header('Location: /client/register');
+
+                exit;
+            }
+
+            $nome = !empty($_POST['nome']) ? $_POST['nome'] : '';
             $celular = !empty($_POST['celular']) ? $_POST['celular'] : '';
             $descricao = $_POST['descricao'];
+            $cep = isset($_POST['cep']) ? $_POST['cep'] : '';
+            $estado = isset($_POST['estado']) ? $_POST['estado'] : '';
+            $cidade = isset($_POST['cidade']) ? $_POST['cidade'] : '';
+            $bairro = isset($_POST['bairro']) ? $_POST['bairro'] : '';
+            $endereco = isset($_POST['endereco']) ? $_POST['endereco'] : '';
+            $numero = isset($_POST['numero']) ? $_POST['numero'] : '';
 
             try {
                 
-                $client->clientRegister($nome, $cpf, $celular, $descricao);
+                $client->clientRegister($nome, $cpf, $celular, $descricao, $cep, $estado, $cidade, $bairro, $endereco, $numero);
 
                 Alert::setSucess('Cliente cadastrado com sucesso.');
-
 
             } catch (\Throwable $erro) {
                
@@ -56,13 +71,12 @@ class ControllerClient
 
             header('Location: /client/register');
 
-                exit;
+            exit;
         }
     }
 
     public function clientList(Request $request, Response $response, array $args)
     {
-
         $user = new User();
 
         $client = new Client();
