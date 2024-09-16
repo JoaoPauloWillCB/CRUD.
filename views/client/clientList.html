@@ -50,7 +50,7 @@
                                         <th>Nome</th>
                                         <th>CPF</th>
                                         <th>Celular</th>
-                                        <th>Descrição</th>
+                                        <th>Detalhes</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tabela-busca" name="tabela-busca">
@@ -59,11 +59,84 @@
                                         <td>{$value.clientes_nome}</td>
                                         <td>{$value.clientes_cpf}</td>
                                         <td>{$value.clientes_celular}</td>
-                                        <td>{$value.clientes_descricao}</td>
+                                        <td class="d-flex justify-content-center">
+                                            <button onclick="modalClientData('{$value.clientes_nome}', '{$value.clientes_celular}', '{$value.clientes_cpf}', '{$value.clientes_cep}', '{$value.clientes_estado}', '{$value.clientes_cidade}', '{$value.clientes_bairro}', '{$value.clientes_endereco}', '{$value.clientes_numero}', '{$value.clientes_descricao}')" class="btn btn-info btn-sm">
+                                                <i class="fas fa-user"></i>
+                                            </button>
+                                        </td>
                                     </tr>
                                     {/loop}
                                 </tbody>
                             </table>
+                              <!-- MODAL DADOS CADASTRAIS -->
+                            <div class="modal fade" id="modalClientData">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="card-title">Dados cadastrais</h1>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form method="post">
+                                                <input onclick="habilitar(this.checked)" id="att" type="checkbox">
+                                                <label for="att">Atualizar dados</label>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label for="nome">Nome</label>
+                                                            <input id="nome" name="nome" type="text" value="" disabled class="form-control form-control-sm">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="cpf">CPF</label>
+                                                            <input id="cpf" name="cpf" type="text" value="" disabled class="form-control form-control-sm">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="estado">Estado</label>
+                                                            <input id="estado" name="estado" type="text" value="" disabled class="form-control form-control-sm">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="bairro">Bairro</label>
+                                                            <input id="bairro" name="bairro" type="text" value="" disabled class="form-control form-control-sm">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="numero">Número</label>
+                                                            <input id="numero" name="numero" type="text" value="" disabled class="form-control form-control-sm">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label for="celular">Celular</label>
+                                                            <input id="celular" name="celular" type="text" value="" disabled class="form-control form-control-sm">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="cep">CEP</label>
+                                                            <input id="cep" name="cep" type="text" value="" disabled class="form-control form-control-sm">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="cidade">Cidade</label>
+                                                            <input id="cidade" name="cidade" type="text" value="" disabled class="form-control form-control-sm">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="endereco">Endereco</label>
+                                                            <input id="endereco" name="endereco" type="text" value="" disabled class="form-control form-control-sm">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="descricao">Descrição</label>
+                                                            <input id="descricao" name="descricao" type="text" value="" disabled class="form-control form-control-sm">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>        
+                                        <div class="card-footer">
+                                            <button id="btn-submit" class="btn btn-success btn-block btn-sm">Atualizar</button>
+                                        </div>                           
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -71,3 +144,23 @@
         </div>
     </section>
 </div>
+
+<script>
+function habilitar(valor)
+{
+    const elementos = document.querySelectorAll('.form-control.form-control-sm');
+
+    if(valor) {
+
+        elementos.forEach((elemento) => {
+            elemento.removeAttribute('disabled');
+        });
+
+    } else {
+
+        elementos.forEach((elemento) => {
+            elemento.setAttribute('disabled', true);
+        });
+    }
+}
+</script>
