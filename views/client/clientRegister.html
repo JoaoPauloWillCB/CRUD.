@@ -41,39 +41,80 @@
         </section>
         <section class="content">
             <div class="container-fluid">
-                <div class="card shadow">
+                <div class="card shadow" style="padding-bottom: 20px;">
                     <form action="" method="POST" name="clientes">
                         <div class="card-body">
                             <div class="row">
                                 <!-- LADO ESQUERDO -->
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label"><span>Nome<span class='text-danger'> * </span></span><a class="" data-content="Nome completo do cliente." data-placement="top" data-toggle="popover" data-trigger="focus" role="button" tabindex="0"><i class="fa fa-question-circle"></i></a></label>                                
+                                        <label class="control-label"> Nome <span class='text-danger'> * </span></label>                                
                                         <div class="input-group">
-                                            <input id="nome" type='text' placeholder="Digite o Nome" name="nome" maxlength="80" class="form-control">
+                                            <input id="nome" type='text' placeholder="Digite o Nome" name="nome" maxlength="30" required class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label"><span>CPF<span class='text-danger'> * </span></span><a class="" data-content="Digite o CPF, utilize apenas números" data-placement="top" data-toggle="popover" data-trigger="focus" role="button" tabindex="0"><i class="fa fa-question-circle"></i></a></label>                                
+                                        <label class="control-label"> CPF <span class='text-danger'> * </span></label>                                
                                         <div class="input-group">
                                             <input id="cpf" type='text' placeholder="Digite o CPF" name="cpf" maxlength="14" required class="form-control">
                                         </div>
-                                    </div>                         
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="control-label"> CEP <span class="text-danger"> * </span></label>                                
+                                        <div class="input-group">
+                                            <input id="cep" onblur="buscaCEP(this.value)" name="cep" type='text' placeholder="CEP" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label"> Endereço <span class="text-danger"> * </span></label>                                
+                                        <div class="input-group">
+                                            <input type='text' id="endereco-cep" placeholder="Endereço" name="endereco" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label"> Número <span class="text-danger"> * </span></label>                                
+                                        <div class="input-group">
+                                            <input type='text' id="numero" placeholder="Número residencial" name="numero" class="form-control">
+                                        </div>
+                                    </div>
+
                                 </div>
                                 <!-- LADO DIREITO -->
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label"><span>Celular<span class='text-danger'> * </span></span><a class="" data-content="Digite o celular do cliente." data-placement="top" data-toggle="popover" data-trigger="focus" role="button" tabindex="0"><i class="fa fa-question-circle"></i></a></label>                                
+                                        <label class="control-label"> Celular <span class="text-danger"> * </span></label>                                
                                         <div class="input-group">
-                                            <input id="celular" type='text' placeholder="Digite o número de celular" name="celular" required class="form-control">
+                                            <input id="celular" type='text' placeholder="Digite o número de celular" name="celular" maxlength="15" required class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label"><span>Descrição </span><a class="" data-content="Digite uma descrição relacionada ao clientes caso necessário." data-placement="top" data-toggle="popover" data-trigger="focus" role="button" tabindex="0"><i class="fa fa-question-circle"></i></a></label>                                
+                                        <label class="control-label"> Descrição </label>                                
                                         <div class="input-group">
                                             <input type='text' placeholder="Descrição" name="descricao" class="form-control">
                                         </div>
                                     </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label"> Bairro <span class="text-danger"> * </span></label>                                
+                                        <div class="input-group">
+                                            <input id="bairro" type='text' placeholder="bairro" name="bairro" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label"> Cidade <span class="text-danger"> * </span></label>                                
+                                        <div class="input-group">
+                                            <input id="cidade" type='text' placeholder="Descrição" name="cidade" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label"> Estado <span class="text-danger"> * </span></label>                                
+                                        <div class="input-group">
+                                            <input id="estado" type='text' placeholder="Descrição" name="estado" class="form-control">
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
